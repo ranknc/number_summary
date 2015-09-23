@@ -5,4 +5,4 @@ print a, "\n"
 
 print NumberSummary.mode(a), "\n"
 
-puts NumberSummary.summarize('data.csv')
+# puts NumberSummary.summarize('data.csv')
