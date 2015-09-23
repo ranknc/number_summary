@@ -64,7 +64,7 @@ module NumberSummaryTests
 	end
 
 	class Mode < NumberSummaryTest
-		def test_finds_the_median
+		def test_finds_the_mode
 			assert_equal 3, NumberSummary.mode([1,2,3,3,5])
 			assert_equal 2, NumberSummary.mode([2,3,1,2])
 			assert_equal 1, NumberSummary.mode([3,2,1,1,1])

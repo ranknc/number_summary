@@ -41,25 +41,40 @@ class NumberSummary
 		end
 # puts median([1, 2, 3, 4, 5]).to_s
 
-		def mode(array1)
-			lengthArray = []
+		def mode(array)
+			sorted = array.sort
+			repeats = []
+			count = 0
 			mode = 0
-			for i in 0...array1.length
-				count = 0
-				for j in i...array1.length
-					if array1[i] == array1[j]
-						count += 1
-					end
-					puts count
-					# lengthArray.push[count]
-					# if count == lengthArray.max
-					# mode = array1[i]
-					# end
+			for i in 1...sorted.length
+				if sorted[i] == sorted[i-1]
+					count += 1
+				else
+					count += 1
+					repeats.push(count)
+					count == repeats.max ? mode = sorted[i] : false
+					count = 0
 				end
 			end
-			return mode
+			mode
 		end
-
 	end
 
 end
+
+			# lengthArray = []
+			# mode = 0
+			# count = 0
+			# for i in 0...array1.length
+			# 	for j in i...array1.length
+			# 		if array1[i] == array1[j]
+			# 			count += 1
+			# 		end
+			# 		puts count
+			# 		# lengthArray.push[count]
+			# 		# if count == lengthArray.max
+			# 		# mode = array1[i]
+			# 		# end
+			# 	end
+			# end
+			# return mode
