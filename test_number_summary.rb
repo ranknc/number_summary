@@ -65,11 +65,18 @@ module NumberSummaryTests
 
 	class Mode < NumberSummaryTest
 		def test_finds_the_mode
-			assert_equal 3, NumberSummary.mode([1,2,3,3,5])
-			assert_equal 2, NumberSummary.mode([2,3,1,2])
-			assert_equal 1, NumberSummary.mode([3,2,1,1,1])
-			assert_equal 4, NumberSummary.mode([4,5,5,4,4])
-			assert_equal 6, NumberSummary.mode([6,6,6,6,6])
+			assert_equal [2,3], NumberSummary.mode([1,2,2,3,3,5])
+			assert_equal [2], NumberSummary.mode([2,3,1,2])
+			assert_equal [1], NumberSummary.mode([3,2,1,1,1,6])
+			assert_equal [4], NumberSummary.mode([4,5,5,4,4])
+			assert_equal [6,7], NumberSummary.mode([6,6,6,7,7,7,8])
+		end
+	end
+
+	class Sigma < NumberSummaryTest
+		def test_finds_the_sigma
+			assert_equal 0.25, NumberSummary.sigma([2,3])
+			assert_equal 4, NumberSummary.sigma([2,4,4,4,5,5,7,9])
 		end
 	end
 end

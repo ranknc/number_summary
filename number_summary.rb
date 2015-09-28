@@ -1,5 +1,8 @@
 # @author Colter Giem <coltergiem@gmail.com>
 # @author Nick Rank <ranknc@s.dcsdk12.org>
+
+require 'csv'
+
 class NumberSummary
 	
 	class << self
@@ -44,37 +47,64 @@ class NumberSummary
 		def mode(array)
 			sorted = array.sort
 			repeats = []
+			numbers = []
+			final = []
 			count = 0
 			mode = 0
-			for i in 1...sorted.length
-				if sorted[i] == sorted[i-1]
+			for i in 0...sorted.length
+				if sorted[i] == sorted[i+1]
 					count += 1
 				else
+					if(i+1 == sorted.length)
+						false
+					else
 					count += 1
+					end
 					repeats.push(count)
-					count == repeats.max ? mode = sorted[i] : false
+					numbers.push(sorted[i])
 					count = 0
 				end
 			end
-			mode
+			for i in 0...repeats.length
+				repeats[i] == repeats.max ? final.push(numbers[i]) : false
+			end
+			final
 		end
+	
+
+		def sigma(array)
+			mean = mean(array)
+			sum_dev = 0
+			for i in 0...array.length
+				dev = (array[i] - mean) * (array[i] - mean)
+				sum_dev += dev
+			end
+			return sum_dev / array.length
+		end
+
+		def summarize(filename)
+			data = read(filename)
+			return """
+			Number Summary:
+			min: #{min(data)}
+			max: #{max(data)}
+			mean: #{mean(data)}
+			median: #{median(data)}
+			q1: #{q1(data)}
+			q3: #{q3(data)}
+			mode: #{mode(data)}
+			sigma: #{sigma(data)}
+			"""
+		end
+
+		private
+			def read(file)
+				read = CSV.read(file)
+				for i in 0...read.length
+					read[i] = '%.2f' % read[i]
+				end
+				return read
+			end
 	end
-
 end
-
-			# lengthArray = []
-			# mode = 0
-			# count = 0
-			# for i in 0...array1.length
-			# 	for j in i...array1.length
-			# 		if array1[i] == array1[j]
-			# 			count += 1
-			# 		end
-			# 		puts count
-			# 		# lengthArray.push[count]
-			# 		# if count == lengthArray.max
-			# 		# mode = array1[i]
-			# 		# end
-			# 	end
-			# end
-			# return mode
+	
