@@ -5,6 +5,10 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   yard
+
+BUNDLED WITH
+   1.10.6
