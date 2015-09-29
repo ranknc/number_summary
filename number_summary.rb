@@ -20,23 +20,39 @@ class NumberSummary
 			for i in 0...array1.length
 				n += array1[i].to_f
 			end
+<<<<<<< HEAD
 			return (n / array1.length).to_f
+=======
+			return ((n / array1.length).to_f).round(2)
+>>>>>>> changes
 		end
 
 		def median(array)
   		sorted = array.sort
   		med = calc_median(sorted)
+<<<<<<< HEAD
   		return med
+=======
+  		return med.round(1)
+>>>>>>> changes
 		end
 
 		def q1(array)
 			sorted = array.sort
+<<<<<<< HEAD
 			median(sorted[0...(sorted.length) / 2])
+=======
+			(median(sorted[0...(sorted.length) / 2])).round(1)
+>>>>>>> changes
 		end
 
 		def q3(array)
 			sorted = array.sort
+<<<<<<< HEAD
 			median(sorted[(sorted.length + 1) / 2...sorted.length])
+=======
+			(median(sorted[(sorted.length + 1) / 2...sorted.length])).round(1)
+>>>>>>> changes
 		end
 
 		def calc_median(array1)
@@ -55,11 +71,15 @@ class NumberSummary
 				if sorted[i] == sorted[i+1]
 					count += 1
 				else
+<<<<<<< HEAD
 					if(i+1 == sorted.length)
 						false
 					else
 					count += 1
 					end
+=======
+					count += 1
+>>>>>>> changes
 					repeats.push(count)
 					numbers.push(sorted[i])
 					count = 0
@@ -76,6 +96,7 @@ class NumberSummary
 			mean = mean(array)
 			sum_dev = 0
 			for i in 0...array.length
+<<<<<<< HEAD
 				dev = (array[i] - mean) * (array[i] - mean)
 				sum_dev += dev
 			end
@@ -104,6 +125,35 @@ class NumberSummary
 					read[i] = '%.2f' % read[i]
 				end
 				return read
+=======
+				dev = (array[i] - mean) ** 2
+				sum_dev += dev
+			end
+			return (Math.sqrt(sum_dev / (array.length - 1))).round(1)
+		end
+
+		def summarize(filename)
+			read = CSV.read(filename)
+			data = floatConvert(read[0])
+			return """Number Summary:
+min: #{min(data)}
+max: #{max(data)}
+mean: #{mean(data)}
+median: #{median(data)}
+q1: #{q1(data)}
+q3: #{q3(data)}
+mode: #{mode(data)}
+sigma: #{sigma(data)}
+"""
+		end
+
+		private
+			def floatConvert(fileData)
+				for i in 0...fileData.length
+					fileData[i] = fileData[i].to_f
+				end
+				return fileData
+>>>>>>> changes
 			end
 	end
 end
